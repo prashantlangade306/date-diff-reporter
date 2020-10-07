@@ -1,4 +1,4 @@
-package com.australiapost.datediffreporter.main;
+package com.australiapost.datediffreporter;
 
 import com.australiapost.datediffreporter.exception.InvalidDateException;
 import com.australiapost.datediffreporter.exception.InvalidUserInputException;
@@ -19,9 +19,11 @@ public class main {
             String formattedOutput = dateDiffReporter.calculateDiffInDays();
             System.out.println(formattedOutput);
         } catch (InvalidDateException e) {
-            e.printStackTrace();
+            //Not a good practice, Ideally should print entire stacktrace to help locate the exact failure.
+            System.out.println("Please enter a valid date. Only years 1900-2020 are supported.");
         } catch (InvalidUserInputException e) {
-            e.printStackTrace();
+            //Not a good practice, Ideally should print entire stacktrace to help locate the exact failure.
+            System.out.println("Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'");
         }
     }
 }

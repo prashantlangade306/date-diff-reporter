@@ -13,19 +13,19 @@ public class DateDiffReporter {
     }
 
     public String calculateDiffInDays() throws InvalidDateException, InvalidUserInputException {
-        //Check if the format is fine
-        if(!customDateProcessor.isValidUserInput(userInput))
-            throw new InvalidUserInputException("Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'");
+        //Check if the user input is valid
+        if(!customDateProcessor.isValidUserInput(userInput)) throw new InvalidUserInputException("Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'");
 
-        //Split dates
+        //Split the dates
         String[] dates = customDateProcessor.splitDates(userInput);
 
-        //Validate dates
-        if(!customDateProcessor.isValidDates(dates)) throw new InvalidDateException("Invalid Date..");
+        //Validate the dates
+        if(!customDateProcessor.isValidDates(dates)) throw new InvalidDateException("Please enter a valid date. Only years 1900-2020 are supported.");
 
         //Calculate the difference in days.
         int days = customDateProcessor.calculateDifferenceInDays(dates[0], dates[1]);
 
+        //Format the input in the required format
         String finalOutput = getFormattedOutput(dates[0], dates[1]) + ", "+days;
 
         return finalOutput;
