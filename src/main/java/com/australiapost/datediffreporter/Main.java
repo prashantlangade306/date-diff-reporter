@@ -7,7 +7,7 @@ import com.australiapost.datediffreporter.processor.DateDiffReporter;
 
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         System.out.println("Please enter two dates in format 'DD MM YYYY, DD MM YYYY' to find number of days between them.");
         Scanner reader = new Scanner(System.in);
