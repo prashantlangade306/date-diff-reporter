@@ -28,12 +28,8 @@ public class DateDiffReporter {
         int days = customDateProcessor.calculateDifferenceInDays(firstDate, secondDate);
 
         //Format the input in the required format
-        String finalOutput = getFormattedOutput(firstDate, secondDate) + ", "+days;
+        String finalOutput = customDateProcessor.getDatesInOrder(firstDate, secondDate) + ", "+days;
 
         return finalOutput;
-    }
-
-    public String getFormattedOutput(String firstDate, String secondDate){
-        return customDateProcessor.getDatesInOrder(firstDate, secondDate);
     }
 }
