@@ -33,6 +33,44 @@ The application is developed using Java technology and tools such as Junit(testc
    src/main/java/com/australiapost/datediffreporter/Main.java
    
    src/main/java/com/australiapost/datediffreporter/exception/InvalidDateException.java
+   
+   src/main/java/com/australiapost/datediffreporter/exception/InvalidUserInputException.java
+   
+   src/main/java/com/australiapost/datediffreporter/processor/CustomDateProcessor.java
+   
+   src/main/java/com/australiapost/datediffreporter/processor/DateDiffReporter.java
+   
+   src/main/java/com/australiapost/datediffreporter/processor/Operations.java
+   
+   src/main/java/com/australiapost/datediffreporter/util/DateUtil.java
+   
+   src/test/java/DateDiffReporterTests.java
+   
+   * src/main/java/com/australiapost/datediffreporter/exception/InvalidDateException.java:
+      This class is used to handle invalid date exception in case when the user supplied input has year out of range 1900 - 2020 or invalid date.
+      
+   * src/main/java/com/australiapost/datediffreporter/exception/InvalidUserInputException.java:
+      This class is used to handle invalid user input in case when the user supplied input does not confirm to the expected format 'DD MM YYYY, DD MM YYYY'
+      
+   *  src/main/java/com/australiapost/datediffreporter/processor/CustomDateProcessor.java:
+      This class does below operations.
+      
+      * Validates the user input in the specified format
+      * Splits the user input in two separate dates.
+      * Validates if the dates supplied are valid (i.e. between 1900 and 2020)
+      * Calculates the date difference in days.
+      * Orders the date (early first followed by latest)
+   
+   *  src/main/java/com/australiapost/datediffreporter/processor/DateDiffReporter.java: 
+      This class does all the business logic processing by interacting with CustomDateProcessor class and returns final output to Main class.
+      
+   *  src/main/java/com/australiapost/datediffreporter/processor/Operations.java:
+      This is an interface that defines the contract for implementing class CustomDateProcessor
+      
+      * boolean isValidUserInput(String str);
+      * String[] splitDates(String str);
+      * boolean isValidDates(String[] dates) throws InvalidDateException;
+      * int calculateDifferenceInDays(String firstDate, String secondDate);
 
 ## How it works?
 
