@@ -8,6 +8,7 @@ This is an application that displays date difference in days for the supplied us
 * [Technologies](#technologies)
 * [Code](#code)
 * [How it works?](#how-it-works)
+* [Test Data](#test-data)
 * [License and Copyright](#license-and-copyright)
 
 ## General Info
@@ -110,6 +111,47 @@ The application is developed using Java technology and tools such as Junit(testc
 *  Post successful date validation, date difference in days is calculated between earlier and latest date.
 *  Finally, the two dates are compared and are re-arranged in ascending order i.e. earlier followed by latest and appended with the number of days difference.
    in format e.g. '01 01 1900, 31 12 2020, 44194'
+   
+## Test Data
+
+* Test InvalidUserInputException
+
+   * 30 06 1982 01 02 2021
+   * 30 06 1982, 01 02 2021
+
+* Test InvalidDateException
+
+   * 30 06 1982, 01 02 2021
+   * 30 06 1982, 01 00 2020
+   * 30 13 1982, 32 00 2020
+   
+* Test split date logic
+
+   * 30 06 1982, 06 10 2020 - Expected {"30 06 1982", "06 10 2020"}
+
+* Test invalid dates
+   
+   * 30 06 1982, 01 02 2021
+   * 30 13 1982, 32 00 2020
+   
+* Test ordering of date (Earlier followed by latest)
+
+   * 30 06 1982, 30 05 1987
+   * 30 06 1982, 01 01 1912
+   
+* Test difference in days
+
+   * 30 06 1982, 30 05 1987
+   * 30 06 1982, 30 06 1982
+   * 01 01 1900, 31 12 2020
+   
+* Test final output (Earliest date, latest date, difference in days)
+
+   * 30 06 1982, 30 05 1987
+   * 30 06 1982, 01 01 1912
+   * 01 01 1900, 31 12 2020
+   
+   
 
 ## License & Copyright
 Prashant Langade
