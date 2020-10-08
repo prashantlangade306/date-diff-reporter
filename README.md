@@ -8,6 +8,7 @@ This is an application that displays date difference in days for the supplied us
 * [Technologies](#technologies)
 * [Code](#code)
 * [How it works?](#how-it-works)
+* [Test Data](#test-data)
 * [License and Copyright](#license-and-copyright)
 
 ## General Info
@@ -30,6 +31,7 @@ The application is developed using Java technology and tools such as Junit(testc
 ## Code
 *  This is a maven based project which has junit dependency for unit testing.
 *  Below is the code structure.
+
    src/main/java/com/australiapost/datediffreporter/Main.java
    
    src/main/java/com/australiapost/datediffreporter/exception/InvalidDateException.java
@@ -71,6 +73,27 @@ The application is developed using Java technology and tools such as Junit(testc
       * String[] splitDates(String str);
       * boolean isValidDates(String[] dates) throws InvalidDateException;
       * int calculateDifferenceInDays(String firstDate, String secondDate);
+      
+    * src/main/java/com/australiapost/datediffreporter/util/DateUtil.java:
+      This class is an utility class for custom date manipulation that takes care of the following processing.
+      
+      * Population of entire date (day month year in dd mm yyyy format) from 1900 till 2020
+      * Finds the total number of days for a month and year.
+      * Checks if a date is a valid date
+      * Checks if the first date is greater than second date.
+      * Tokenize the passed in user input in the form of dd mm yyyy
+      * Returns days in a month, month and year from entire date string (Via separate methods)
+      
+    * src/test/java/DateDiffReporterTests.java:
+      This class is a unit test suite that covers following test cases to ensure full coverage of the business functionality.
+      
+       * Tests if the InvalidUserInputException is thrown by the code for any invalid user input.
+       * Tests if the InvalidDateException is thrown by the code for any invalid date passed (i.e. wrong day, month or year).
+       * Tests if the passed in dates in the form of 'DD MM YYYY, DD MM YYYY' is split in proper format.
+       * Tests if the isValidDate method returns false for any invalid date passed (i.e. wrong day, month or year).
+       * Tests if the code returns proper formatted output i.e. earliest date, latest date, number of days as a date difference for the dates passed.
+       * Tests if the code returns dates in a proper order i.e. earliest followed by latest.
+       * Tests if the code returns proper number of days as a date difference for the dates passed.
 
 ## How it works?
 
@@ -88,6 +111,47 @@ The application is developed using Java technology and tools such as Junit(testc
 *  Post successful date validation, date difference in days is calculated between earlier and latest date.
 *  Finally, the two dates are compared and are re-arranged in ascending order i.e. earlier followed by latest and appended with the number of days difference.
    in format e.g. '01 01 1900, 31 12 2020, 44194'
+   
+## Test Data
+
+* Test InvalidUserInputException
+
+   * 30 06 1982 01 02 2021 - Expected o/p: Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'
+   * 30 06 1982, 01 02 2021 - Expected o/p: Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'
+
+* Test InvalidDateException
+
+   * 30 06 1982, 01 02 2021 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
+   * 30 06 1982, 01 00 2020 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
+   * 30 13 1982, 32 00 2020 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
+   
+* Test split date logic
+
+   * 30 06 1982, 06 10 2020 - Expected o/p: {"30 06 1982", "06 10 2020"}
+
+* Test invalid dates
+   
+   * 30 06 1982, 01 02 2021 - Asserts false for customDateProcessor.isValidDates method
+   * 30 13 1982, 32 00 2020 - Asserts false for customDateProcessor.isValidDates method
+   
+* Test ordering of date (Earlier followed by latest)
+
+   * 30 06 1982, 30 05 1987 - Expected o/p: 30 06 1982, 30 05 1987
+   * 30 06 1982, 01 01 1912 - Expected o/p: 01 01 1912, 30 06 1982
+   
+* Test difference in days
+
+   * 30 06 1982, 30 05 1987 - Expected o/p: 1795
+   * 30 06 1982, 30 06 1982 - Expected o/p: 0
+   * 01 01 1900, 31 12 2020 - Expected o/p: 44194
+   
+* Test final output (Earliest date, latest date, difference in days)
+
+   * 30 06 1982, 30 05 1987 - Expected o/p: 30 06 1982, 30 05 1987, 1795
+   * 30 06 1982, 01 01 1912 - Expected o/p: 01 01 1912, 30 06 1982, 25748
+   * 01 01 1900, 31 12 2020 - Expected o/p: 01 01 1900, 31 12 2020, 44194
+   
+   
 
 ## License & Copyright
 Prashant Langade
