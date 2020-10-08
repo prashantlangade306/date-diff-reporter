@@ -7,7 +7,7 @@ This is an application that displays date difference in days for the supplied us
 * [General Info](#general-Info)
 * [Technologies](#technologies)
 * [Code](#code)
-* [How it works?](#how-it-works)
+* [How it works?](#how)
 * [Test Data](#test-data)
 * [License and Copyright](#license-and-copyright)
 
