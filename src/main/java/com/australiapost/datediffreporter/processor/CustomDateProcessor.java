@@ -68,11 +68,13 @@ public class CustomDateProcessor implements operations {
     }
 
     public String getDatesInOrder(String firstDate, String secondDate){
+        StringBuilder dateBuilder = new StringBuilder();
         if(dateUtil.isFirstDateGreaterThanSecond(firstDate,secondDate)){
-            return secondDate +", "+firstDate;
+            dateBuilder.append(secondDate).append(", ").append(firstDate);
         } else {
-            return firstDate +", "+ secondDate;
+            dateBuilder.append(firstDate).append(", ").append(secondDate);
         }
+        return dateBuilder.toString();
     }
 }
 
