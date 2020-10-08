@@ -1,54 +1,62 @@
 package com.australiapost.datediffreporter.util;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class DateUtil {
 
     private final static int MIN_YEAR = 1900;
     private final static int MAX_YEAR = 2020;
-    private final static int MIN_MONTH = 1;
-    private final static int MAX_MONTH = 12;
-    private final static int DAYS_IN_MONTH = 31; //Assumming month of 31 days
+    private static Set<String> validDatesSet = new HashSet<String>();
 
-    public boolean isValidDay(String daysInMonth){
-        return Integer.valueOf(daysInMonth) <= DAYS_IN_MONTH;
+    //Populate all the dates from 1900 till 2020
+    static {
+        for (int year = MIN_YEAR; year <= MAX_YEAR; year++) {
+            for (int month = 1; month <= 12; month++) {
+                for (int day = 1; day <= daysInMonth(year, month); day++) {
+                    StringBuilder date = new StringBuilder();
+                    date.append(String.format("%02d", day));
+                    date.append(" ");
+                    date.append(String.format("%02d", month));
+                    date.append(" ");
+                    date.append(String.format("%04d", year));
+                    validDatesSet.add(date.toString());
+                }
+            }
+        }
     }
 
-    public boolean isValidMonth(String month){
-        int intMonth = Integer.valueOf(month);
-        return intMonth >= MIN_MONTH && intMonth <= MAX_MONTH;
-    }
-
-    public boolean isValidYear(String year){
-        int intYear = Integer.valueOf(year);
-        return intYear >= MIN_YEAR && intYear <= MAX_YEAR;
+    private static int daysInMonth(int year, int month) {
+        int daysInMonth;
+        switch (month) {
+            //31 days for 1,3,5,7,8,10 and 12 months.
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                daysInMonth = 31;
+                break;
+            case 2:
+                //Check for lead year
+                if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
+                    daysInMonth = 29;
+                } else {
+                    daysInMonth = 28;
+                }
+                break;
+            default:
+                //Except both of the above, default is 30
+                daysInMonth = 30;
+        }
+        return daysInMonth;
     }
 
     public boolean isValidDate(String date){
         List<String> tokens = getDateTokens(date);
-        String dayInMonth = tokens.get(0);
-        String monthInYear = tokens.get(1);
-        String year = tokens.get(2);
-        return isValidDay(dayInMonth) && isValidMonth(monthInYear) && isValidYear(year);
+        return validDatesSet.contains(date);
     }
-
-    public int getDayInMonth(String date){
-        List<String> tokens = getDateTokens(date);
-        return Integer.valueOf(tokens.get(0));
-    }
-
-    private List<String> getDateTokens(String date) {
-        StringTokenizer tokenizer = new StringTokenizer(date, " ");
-        List<String> tokens = new ArrayList<String>();
-
-        while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-        return tokens;
-    }
-
 
     public boolean isFirstDateGreaterThanSecond(String firstDate, String secondDate){
         //First check year
@@ -75,10 +83,26 @@ public class DateUtil {
         return false;
     }
 
+    private List<String> getDateTokens(String date) {
+        StringTokenizer tokenizer = new StringTokenizer(date, " ");
+        List<String> tokens = new ArrayList<String>();
+
+        while (tokenizer.hasMoreElements()) {
+            tokens.add(tokenizer.nextToken());
+        }
+        return tokens;
+    }
+
+    public int getDayInMonth(String date){
+        List<String> tokens = getDateTokens(date);
+        return Integer.valueOf(tokens.get(0));
+    }
+
     public int getMonth(String date){
         List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(1));
     }
+
     public int getYear(String date){
         List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(2));
