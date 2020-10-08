@@ -1,11 +1,12 @@
 # date-diff-reporter - Coding assignment for Australia Post
 
-This is a application that displays date difference in days for the supplied user input in the form of date pairs.
+This is an application that displays date difference in days for the supplied user input in the form of date pairs.
 
 
 ## Table of contents
 * [General Info](#general-Info)
 * [Technologies](#technologies)
+* [Code](#code)
 * [How it works?](#how-it-works)
 * [License and Copyright](#license-and-copyright)
 
@@ -25,6 +26,13 @@ where
 
 ## Technologies
 The application is developed using Java technology and tools such as Junit(testcases), Maven(build tool) and Intellij (IDE).
+
+## Code
+*  This is a maven based project which has junit dependency for unit testing.
+*  Below is the code structure.
+   src/main/java/com/australiapost/datediffreporter/Main.java
+   
+   src/main/java/com/australiapost/datediffreporter/exception/InvalidDateException.java
 
 ## How it works?
 
