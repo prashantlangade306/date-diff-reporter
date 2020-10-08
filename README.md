@@ -71,6 +71,27 @@ The application is developed using Java technology and tools such as Junit(testc
       * String[] splitDates(String str);
       * boolean isValidDates(String[] dates) throws InvalidDateException;
       * int calculateDifferenceInDays(String firstDate, String secondDate);
+      
+    * src/main/java/com/australiapost/datediffreporter/util/DateUtil.java:
+      This class is an utility class for custom date manipulation that takes care of the following processing.
+      
+      * Population of entire date (day month year in dd mm yyyy format) from 1900 till 2020
+      * Finds the total number of days for a month and year.
+      * Checks if a date is a valid date
+      * Checks if the first date is greater than second date.
+      * Tokenize the passed in user input in the form of dd mm yyyy
+      * Returns days in a month, month and year from entire date string (Via separate methods)
+      
+    * src/test/java/DateDiffReporterTests.java:
+      This class is a unit test suite that covers following test cases to ensure full coverage of the business functionality.
+      
+       * Tests if the InvalidUserInputException is thrown by the code for any invalid user input.
+       * Tests if the InvalidDateException is thrown by the code for any invalid date passed (i.e. wrong day, month or year).
+       * Tests if the passed in dates in the form of 'DD MM YYYY, DD MM YYYY' is split in proper format.
+       * Tests if the isValidDate method returns false for any invalid date passed (i.e. wrong day, month or year).
+       * Tests if the code returns proper formatted output i.e. earliest date, latest date, number of days as a date difference for the dates passed.
+       * Tests if the code returns dates in a proper order i.e. earliest followed by latest.
+       * Tests if the code returns proper number of days as a date difference for the dates passed.
 
 ## How it works?
 
