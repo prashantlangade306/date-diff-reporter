@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * 5. Orders the date (early first followed by latest)
  *
  */
-public class CustomDateProcessor implements operations {
+public class CustomDateProcessor implements Operations {
     DateUtil dateUtil;
 
     public CustomDateProcessor(){
