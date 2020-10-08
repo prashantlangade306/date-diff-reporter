@@ -27,30 +27,28 @@ public class DateUtil {
     }
 
     public boolean isValidDate(String date){
-        StringTokenizer tokenizer = new StringTokenizer(date, " ");
-        List<String> tokens = new ArrayList<String>();
-
-        while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-
+        List<String> tokens = getDateTokens(date);
         String dayInMonth = tokens.get(0);
         String monthInYear = tokens.get(1);
         String year = tokens.get(2);
-
         return isValidDay(dayInMonth) && isValidMonth(monthInYear) && isValidYear(year);
     }
 
     public int getDayInMonth(String date){
+        List<String> tokens = getDateTokens(date);
+        return Integer.valueOf(tokens.get(0));
+    }
+
+    private List<String> getDateTokens(String date) {
         StringTokenizer tokenizer = new StringTokenizer(date, " ");
         List<String> tokens = new ArrayList<String>();
 
         while (tokenizer.hasMoreElements()) {
             tokens.add(tokenizer.nextToken());
         }
-
-        return Integer.valueOf(tokens.get(0));
+        return tokens;
     }
+
 
     public boolean isFirstDateGreaterThanSecond(String firstDate, String secondDate){
         //First check year
@@ -78,23 +76,11 @@ public class DateUtil {
     }
 
     public int getMonth(String date){
-        StringTokenizer tokenizer = new StringTokenizer(date, " ");
-        List<String> tokens = new ArrayList<String>();
-
-        while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-
+        List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(1));
     }
     public int getYear(String date){
-        StringTokenizer tokenizer = new StringTokenizer(date, " ");
-        List<String> tokens = new ArrayList<String>();
-
-        while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-
+        List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(2));
     }
 }
