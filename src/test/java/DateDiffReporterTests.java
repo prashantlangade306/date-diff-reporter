@@ -69,7 +69,7 @@ public class DateDiffReporterTests {
 
         datePair = "30 06 1982, 01 01 1912";
         dateDiffReporterTester = new DateDiffReporter(datePair, customDateProcessor);
-        expectedOutPut = "01 01 1912, 30 06 1982, -25748";
+        expectedOutPut = "01 01 1912, 30 06 1982, 25748";
         assertEquals(expectedOutPut, dateDiffReporterTester.calculateDiffInDays());
 
         datePair = "01 01 1900, 31 12 2020";

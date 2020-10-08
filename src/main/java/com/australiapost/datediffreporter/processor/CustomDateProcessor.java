@@ -7,6 +7,15 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class performs different operations such as
+ * 1. Validates the user input in the specified format
+ * 2. Splits the user input in two separate dates.
+ * 3. Validates if the dates supplied are valid (i.e. between 1900 and 2020)
+ * 4. Calculates the date difference in days.
+ * 5. Orders the date (early first followed by latest)
+ *
+ */
 public class CustomDateProcessor implements operations {
     DateUtil dateUtil;
 
@@ -49,12 +58,12 @@ public class CustomDateProcessor implements operations {
         int firstDateYear = dateUtil.getYear(firstDate);
         int secondDateMonth = dateUtil.getMonth(secondDate);
         int firstDateMonth = dateUtil.getMonth(firstDate);
-        return (secondDateDay-32075+1461*(secondDateYear+4800+(secondDateMonth-14)/12)/4
+        return Math.abs((secondDateDay-32075+1461*(secondDateYear+4800+(secondDateMonth-14)/12)/4
                 +367*(secondDateMonth-2-(secondDateMonth-14)/12*12)/12-
                 3*((secondDateYear+4900+(secondDateMonth-14)/12)/100)/4)-
                     (firstDateDay-32075+1461*(firstDateYear+4800+(firstDateMonth
                             -14)/12)/4+367*(firstDateMonth-2-(firstDateMonth-14)/12*12)/12
-                            -3*((firstDateYear+4900+(firstDateMonth-14)/12)/100)/4);
+                            -3*((firstDateYear+4900+(firstDateMonth-14)/12)/100)/4));
 
     }
 
