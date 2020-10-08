@@ -30,6 +30,7 @@ The application is developed using Java technology and tools such as Junit(testc
 ## Code
 *  This is a maven based project which has junit dependency for unit testing.
 *  Below is the code structure.
+
    src/main/java/com/australiapost/datediffreporter/Main.java
    
    src/main/java/com/australiapost/datediffreporter/exception/InvalidDateException.java
