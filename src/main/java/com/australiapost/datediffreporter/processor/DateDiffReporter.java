@@ -16,6 +16,13 @@ public class DateDiffReporter {
         this.customDateProcessor = customDateProcessor;
     }
 
+    /**
+     * Performs all the required operations in a order to calculate difference in days.
+     *
+     * @return
+     * @throws InvalidDateException
+     * @throws InvalidUserInputException
+     */
     public String calculateDiffInDays() throws InvalidDateException, InvalidUserInputException {
         //Validate the user input
         if(!customDateProcessor.isValidUserInput(userInput)) throw new InvalidUserInputException("Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'");

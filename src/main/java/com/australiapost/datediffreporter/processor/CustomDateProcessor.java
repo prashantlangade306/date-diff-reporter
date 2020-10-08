@@ -23,6 +23,12 @@ public class CustomDateProcessor implements Operations {
         dateUtil = new DateUtil();
     }
 
+    /**
+     * Checks if the user inout is valid or not.
+     *
+     * @param str
+     * @return
+     */
     public boolean isValidUserInput(String str) {
 
         Pattern pattern = Pattern.compile("\\d\\d \\d\\d \\d\\d\\d\\d, \\d\\d \\d\\d \\d\\d\\d\\d");
@@ -30,6 +36,12 @@ public class CustomDateProcessor implements Operations {
         return matcher.matches();
     }
 
+    /**
+     * Splits the user input into two separate dates.
+     *
+     * @param str
+     * @return
+     */
     public String[] splitDates(String str) {
 
         StringTokenizer tokenizer = new StringTokenizer(str, ",");
@@ -42,6 +54,13 @@ public class CustomDateProcessor implements Operations {
         return tokens;
     }
 
+    /**
+     * Checks if the dates are valid.
+     *
+     * @param dates
+     * @return
+     * @throws InvalidDateException
+     */
     public boolean isValidDates(String[] dates) throws InvalidDateException {
         for(String date : dates){
             if((!dateUtil.isValidDate(date))){
@@ -51,6 +70,13 @@ public class CustomDateProcessor implements Operations {
         return true;
     }
 
+    /**
+     * Calculates the difference in days between two dates.
+     *
+     * @param firstDate
+     * @param secondDate
+     * @return
+     */
     public int calculateDifferenceInDays(String firstDate, String secondDate) {
         int secondDateDay = dateUtil.getDayInMonth(secondDate);
         int firstDateDay = dateUtil.getDayInMonth(firstDate);
@@ -67,6 +93,13 @@ public class CustomDateProcessor implements Operations {
 
     }
 
+    /**
+     * Orders the date in a particular format (earliest followed by latest)
+     *
+     * @param firstDate
+     * @param secondDate
+     * @return
+     */
     public String getDatesInOrder(String firstDate, String secondDate){
         StringBuilder dateBuilder = new StringBuilder();
         if(dateUtil.isFirstDateGreaterThanSecond(firstDate,secondDate)){

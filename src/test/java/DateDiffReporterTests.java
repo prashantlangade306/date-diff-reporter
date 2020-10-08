@@ -30,6 +30,12 @@ public class DateDiffReporterTests {
         customDateProcessor = new CustomDateProcessor();
     }
 
+    /**
+     * Tests InvalidUserInputException for a invalid user input.
+     *
+     * @throws InvalidDateException
+     * @throws InvalidUserInputException
+     */
     @Test(expected = InvalidUserInputException.class)
     public void testInvalidUserInput() throws InvalidDateException, InvalidUserInputException {
         String userDatePairInput = "30 06 1982 01 02 2021";
@@ -44,6 +50,12 @@ public class DateDiffReporterTests {
 
     }
 
+    /**
+     * Tests InvalidDateException for a non-existent dates between 1900 and 2020.
+     *
+     * @throws InvalidDateException
+     * @throws InvalidUserInputException
+     */
     @Test(expected = InvalidDateException.class)
     public void testInvalidDate() throws InvalidDateException, InvalidUserInputException {
         String userDatePairInput = "30 06 1982, 01 02 2021";
@@ -62,6 +74,10 @@ public class DateDiffReporterTests {
                 "Please enter a valid date. Only years 1900-2020 are supported.");
     }
 
+    /**
+     * Tests splitting of dates logic.
+     *
+     */
     @Test
     public void testSplitDates() {
         String datePair = "30 06 1982, 06 10 2020";
@@ -73,6 +89,11 @@ public class DateDiffReporterTests {
         assertThat(expectedOutput, not(equalTo(new String[]{"30 06 1982"})));
     }
 
+    /**
+     * Tests invalid dates method logic.
+     *
+     * @throws InvalidDateException
+     */
     @Test
     public void testInvalidDates() throws InvalidDateException {
         String datePair = "30 06 1982, 01 02 2021";
@@ -86,6 +107,12 @@ public class DateDiffReporterTests {
         assertFalse(customDateProcessor.isValidDates(datesArray));
     }
 
+    /**
+     * Tests calculation of a difference in days logic.
+     *
+     * @throws InvalidUserInputException
+     * @throws InvalidDateException
+     */
     @Test
     public void testCalculateDifferenceInDays() throws InvalidUserInputException, InvalidDateException {
         String datePair = "30 06 1982, 30 05 1987";
@@ -105,6 +132,9 @@ public class DateDiffReporterTests {
 
     }
 
+    /**
+     * Tests ordering of dates logic.
+     */
     @Test
     public void testDatesInOrder() {
         String datePair = "30 06 1982, 30 05 1987";

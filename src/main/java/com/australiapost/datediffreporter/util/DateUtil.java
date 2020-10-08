@@ -35,6 +35,13 @@ public class DateUtil {
         }
     }
 
+    /**
+     * Returns the days for a month and year.
+     *
+     * @param year
+     * @param month
+     * @return
+     */
     private static int daysInMonth(int year, int month) {
         int daysInMonth;
         switch (month) {
@@ -63,11 +70,24 @@ public class DateUtil {
         return daysInMonth;
     }
 
+    /**
+     * Checks if the date is a valid date.
+     *
+     * @param date
+     * @return
+     */
     public boolean isValidDate(String date){
         List<String> tokens = getDateTokens(date);
         return validDatesSet.contains(date);
     }
 
+    /**
+     * Checks if the first date is greater than the second.
+     *
+     * @param firstDate
+     * @param secondDate
+     * @return
+     */
     public boolean isFirstDateGreaterThanSecond(String firstDate, String secondDate){
         //First check year
         int firstYear = getYear(firstDate);
@@ -93,6 +113,12 @@ public class DateUtil {
         return false;
     }
 
+    /**
+     * Tokenizes the dates in day, month and year.
+     *
+     * @param date
+     * @return
+     */
     private List<String> getDateTokens(String date) {
         StringTokenizer tokenizer = new StringTokenizer(date, " ");
         List<String> tokens = new ArrayList<String>();
@@ -103,16 +129,34 @@ public class DateUtil {
         return tokens;
     }
 
+    /**
+     * Retrieves a day of a month from the date token.
+     *
+     * @param date
+     * @return
+     */
     public int getDayInMonth(String date){
         List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(0));
     }
 
+    /**
+     * Retrieves a month from the date token.
+     *
+     * @param date
+     * @return
+     */
     public int getMonth(String date){
         List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(1));
     }
 
+    /**
+     * Retrieves a year from the date token.
+     *
+     * @param date
+     * @return
+     */
     public int getYear(String date){
         List<String> tokens = getDateTokens(date);
         return Integer.valueOf(tokens.get(2));
