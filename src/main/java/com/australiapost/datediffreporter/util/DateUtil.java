@@ -2,6 +2,16 @@ package com.australiapost.datediffreporter.util;
 
 import java.util.*;
 
+/**
+ * This class performs different operations such as
+ * 1. Population of entire date (day month year in dd mm yyyy format) from 1900 till 2020
+ * 2. Finds the total number of days for a month and year.
+ * 3. Checks if a date is a valid date
+ * 4. Checks if the first date is greater than second date.
+ * 5. Tokenize the passed in user input in the form of dd mm yyyy
+ * 6. Returns day in a month, month and year from entire date string (Via separate methods)
+ *
+ */
 public class DateUtil {
 
     private final static int MIN_YEAR = 1900;

@@ -3,6 +3,10 @@ package com.australiapost.datediffreporter.processor;
 import com.australiapost.datediffreporter.exception.InvalidDateException;
 import com.australiapost.datediffreporter.exception.InvalidUserInputException;
 
+/**
+ * This class does all the business logic processing by interacting with CustomDateProcessor class and returns final output to Main class.
+ *
+ */
 public class DateDiffReporter {
     private String userInput;
     private CustomDateProcessor customDateProcessor;

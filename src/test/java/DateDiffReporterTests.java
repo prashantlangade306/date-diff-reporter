@@ -9,6 +9,17 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
+/**
+ * This class executes different unit test cases such as
+ * 1. Tests if the InvalidUserInputException is thrown by the code for any invalid user input.
+ * 2. Tests if the InvalidDateException is thrown by the code for any invalid date passed (i.e. wrong day, month or year).
+ * 3. Tests if the passed in dates in the form of 'DD MM YYYY, DD MM YYYY' is split in proper format.
+ * 4. Tests if the isValidDate method returns false for any invalid date passed (i.e. wrong day, month or year).
+ * 5. Tests if the code returns proper formatted output i.e. earliest date, latest date, number of days as a date difference for the dates passed.
+ * 6. Tests if the code returns dates in a proper order i.e. earliest followed by latest.
+ * 7. Tests if the code returns proper number of days as a date difference for the dates passed.
+ *
+ */
 public class DateDiffReporterTests {
 
     CustomDateProcessor customDateProcessor = null;
@@ -39,6 +50,16 @@ public class DateDiffReporterTests {
         dateDiffReporterTester = new DateDiffReporter(userDatePairInput, customDateProcessor);
         assertEquals(dateDiffReporterTester.calculateDiffInDays(),
                 "Please enter a valid date. Only years 1900-2020 are supported.");
+
+        userDatePairInput = "30 06 1982, 01 00 2020";
+        dateDiffReporterTester = new DateDiffReporter(userDatePairInput, customDateProcessor);
+        assertEquals(dateDiffReporterTester.calculateDiffInDays(),
+                "Please enter a valid date. Only years 1900-2020 are supported.");
+
+        userDatePairInput = "30 13 1982, 32 00 2020";
+        dateDiffReporterTester = new DateDiffReporter(userDatePairInput, customDateProcessor);
+        assertEquals(dateDiffReporterTester.calculateDiffInDays(),
+                "Please enter a valid date. Only years 1900-2020 are supported.");
     }
 
     @Test
@@ -57,6 +78,11 @@ public class DateDiffReporterTests {
         String datePair = "30 06 1982, 01 02 2021";
         dateDiffReporterTester = new DateDiffReporter(datePair, customDateProcessor);
         String[] datesArray = customDateProcessor.splitDates(datePair);
+        assertFalse(customDateProcessor.isValidDates(datesArray));
+
+        datePair = "30 13 1982, 32 00 2020";
+        dateDiffReporterTester = new DateDiffReporter(datePair, customDateProcessor);
+        datesArray = customDateProcessor.splitDates(datePair);
         assertFalse(customDateProcessor.isValidDates(datesArray));
     }
 
