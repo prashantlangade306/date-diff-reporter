@@ -116,40 +116,40 @@ The application is developed using Java technology and tools such as Junit(testc
 
 * Test InvalidUserInputException
 
-   * 30 06 1982 01 02 2021
-   * 30 06 1982, 01 02 2021
+   * 30 06 1982 01 02 2021 - Expected o/p: Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'
+   * 30 06 1982, 01 02 2021 - Expected o/p: Please enter datepair in the format as DD 'MM YYYY, DD MM YYYY'
 
 * Test InvalidDateException
 
-   * 30 06 1982, 01 02 2021
-   * 30 06 1982, 01 00 2020
-   * 30 13 1982, 32 00 2020
+   * 30 06 1982, 01 02 2021 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
+   * 30 06 1982, 01 00 2020 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
+   * 30 13 1982, 32 00 2020 - Expected o/p: Please enter a valid date. Only years 1900-2020 are supported.
    
 * Test split date logic
 
-   * 30 06 1982, 06 10 2020 - Expected {"30 06 1982", "06 10 2020"}
+   * 30 06 1982, 06 10 2020 - Expected o/p: {"30 06 1982", "06 10 2020"}
 
 * Test invalid dates
    
-   * 30 06 1982, 01 02 2021
-   * 30 13 1982, 32 00 2020
+   * 30 06 1982, 01 02 2021 - Asserts false for customDateProcessor.isValidDates method
+   * 30 13 1982, 32 00 2020 - Asserts false for customDateProcessor.isValidDates method
    
 * Test ordering of date (Earlier followed by latest)
 
-   * 30 06 1982, 30 05 1987
-   * 30 06 1982, 01 01 1912
+   * 30 06 1982, 30 05 1987 - Expected o/p: 30 06 1982, 30 05 1987
+   * 30 06 1982, 01 01 1912 - Expected o/p: 01 01 1912, 30 06 1982
    
 * Test difference in days
 
-   * 30 06 1982, 30 05 1987
-   * 30 06 1982, 30 06 1982
-   * 01 01 1900, 31 12 2020
+   * 30 06 1982, 30 05 1987 - Expected o/p: 1795
+   * 30 06 1982, 30 06 1982 - Expected o/p: 0
+   * 01 01 1900, 31 12 2020 - Expected o/p: 44194
    
 * Test final output (Earliest date, latest date, difference in days)
 
-   * 30 06 1982, 30 05 1987
-   * 30 06 1982, 01 01 1912
-   * 01 01 1900, 31 12 2020
+   * 30 06 1982, 30 05 1987 - Expected o/p: 30 06 1982, 30 05 1987, 1795
+   * 30 06 1982, 01 01 1912 - Expected o/p: 01 01 1912, 30 06 1982, 25748
+   * 01 01 1900, 31 12 2020 - Expected o/p: 01 01 1900, 31 12 2020, 44194
    
    
 
